@@ -1,0 +1,119 @@
+#include <omp.h>
+
+#include <cstdlib>
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+
+#define length(x) (sizeof(x)/sizeof(x[0]))
+
+#define TI 8000
+#define TK 5
+
+using namespace std;
+
+
+float image[TI][TI];
+float kernel[TK][TK];
+float result[TI][TI]; 
+
+void print_img()
+{
+    for(int i = 0; i < length(result); i++)
+    {
+        for(int j = 0; j < length(result); j++)
+        {
+            cout<<" "<<result[i][j];            
+        }
+        cout<<endl;
+    }
+}
+
+float convolucion ()
+{
+    //int mitad, i,j,m,n,mm,nn,ii,jj;
+    float acumulador;
+    
+    //llenar las matrices con valores aleatorios
+    for(int i=0;i<TI;i++)
+    {
+        for(int j=0;j<TI;j++)
+        image[i][j]=1;//(std::rand() % 5) * 2;
+    }
+    
+    for(int i=0;i<TK;i++)
+    {
+        for(int j=0;j<TK;j++)
+        kernel[i][j]=2;//(std::rand() % 5) * 2;
+    }
+    //
+    
+    
+    //empieza el programa
+    int mitad = TK / 2;
+    
+    
+    
+    double  dif;
+    double start = omp_get_wtime( );
+
+    
+    
+    #pragma omp parallel for private(acumulador) //num_threads(8)
+    for (int i = 0; i < TI; ++i) // Filas
+    {
+        //#pragma omp parallel 
+        for (int j = 0; j < TI; ++j) // Columnas
+        {
+            // Variable acumuladora
+            acumulador = 0;
+            
+            //#pragma omp parallel for
+            for (int m = 0; m < TK; ++m) // Filas del Kernel
+            {
+                int mm = TK - 1 - m; // Indice de la fila del kernel alrevez
+                
+                
+                for (int n = 0; n < TK; ++n) // Columnas del kernel
+                {
+                    int nn = TK - 1 - n; // Indice de la columna del kernel alrevez
+
+                    int ii = i + (m - mitad);
+                    int jj = j + (n - mitad);
+
+                    if (ii >= 0 && ii < TI && jj >= 0 && jj < TI)
+                    {
+                        acumulador += image[ii][jj] * kernel[mm][nn];
+                    }                        
+                }
+            }
+            
+            result[i][j] = acumulador;
+        }
+    }
+    //print_img();
+    
+    double end = omp_get_wtime();
+    dif = end - start;
+    
+    cout<<dif<<endl;
+    
+    
+    return 0;
+
+}
+
+
+//joao 
+
+
+
+int main(int argc, char** argv) {
+
+
+    convolucion();
+
+    
+    return 0;
+}
