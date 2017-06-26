@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="ws" Database="" Version="10.0.0">
-  <Project Name="Algoritmos" Path="Arena/Arena.project" Active="Yes"/>
-  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="No"/>
+  <Project Name="Algoritmos" Path="Arena/Arena.project" Active="No"/>
+  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>

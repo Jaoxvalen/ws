@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TI 8000
+#define TI 10
 #define TK 5
-#define M 2;
+
 
 float image[TI][TI];
 float kernel[TK][TK];
@@ -38,7 +38,32 @@ float getAcum(int Im_i, int Im_j)
     acum=acum/c;
     return acum;
 }
+using namespace std;
 
 int main(int argc, char** argv) {
+    
+    for(int i=0; i<TK; i++)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for(int i=0; i<TK; i++)
+    {
+        for(int j=0;j<TK; j++)
+        {
+            kernel[i][j]=2;
+        }
+    }
+    
+    for(int i=0; i<TI; i++)
+    {
+        for(int j=0;j<TI; j++)
+        {
+            image[i][j]=1;
+        }
+    }
+    
+    for(int i=0; i<TI; i++)
+    {
+        for(int j=0;j<TI; j++)
+        {
+            result[i][j]=image[i][j]*getAcum(i,j);
+        }
+    }
     return 0;
 }
