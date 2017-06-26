@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="ws" Database="" Version="10.0.0">
-  <Project Name="Arena" Path="Arena/Arena.project" Active="No"/>
-  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="Yes"/>
+  <Project Name="Algoritmos" Path="Arena/Arena.project" Active="Yes"/>
+  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
-      <Project Name="Arena" ConfigName="Debug"/>
+      <Project Name="Algoritmos" ConfigName="Debug"/>
       <Project Name="Parallel" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
-      <Project Name="Arena" ConfigName="Release"/>
+      <Project Name="Algoritmos" ConfigName="Release"/>
       <Project Name="Parallel" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
