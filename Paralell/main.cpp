@@ -5,65 +5,122 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TI 10
+#define TI 8000
 #define TK 5
+#define KC 2
 
+#define NUM_THREADS 8
 
 float image[TI][TI];
 float kernel[TK][TK];
-float result[TI][TI]; 
+float result[TI][TI];
 
 using namespace std;
 
-
-//i , j relativo a la matriz image
+// i , j relativo a la matriz image
 float getAcum(int Im_i, int Im_j)
 {
-    int f=TI-TK;
-    float acum=0;
-    float c=0;
-    for(int Ker_i=0; Ker_i<TK; Ker_i++)
-    {
-        for(int ker_j=0; Ker_i<TK; ker_j++)
-        {
-            int iii=Ker_i-f+Im_i;
-            int ijj=Ker_i-f+Im_j;
-            if(iii>=0 && ijj>=0 && iii<TI && ijj<TI)
-            {
-                c++;
-                acum+=image[Ker_i-f+Im_i][Ker_i-f+Im_j]*kernel[Ker_i][ker_j];
+    int di = Im_i - KC;
+    int dj = Im_j - KC;
+
+    float acum = 0;
+    // float c=0;
+    for(int ker_i = 0; ker_i < TK; ker_i++) {
+        for(int ker_j = 0; ker_j < TK; ker_j++) {
+            int im = ker_i + di;
+            int jm = ker_j + dj;
+            if(im >= 0 && im < TI && jm >= 0 && jm < TI) {
+                acum += image[im][jm] * kernel[ker_i][ker_j];
             }
         }
     }
-    acum=acum/c;
     return acum;
 }
-using namespace std;
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
+
+    // llenamos las matrices con aleatorios
+    for(int i = 0; i < TK; i++)
+        for(int i = 0; i < TK; i++) {
+            for(int j = 0; j < TK; j++) {
+                kernel[i][j] = 2; //(std::rand() % 5) * 2;
+            }
+        }
+
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            image[i][j] = 1; //(std::rand() % 5) * 2;
+        }
+    }
+    // fin de llenado de matrices
+
+    double t1,tp,sp,ep,end,start ;
+
     
-    for(int i=0; i<TK; i++)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      for(int i=0; i<TK; i++)
+    
+    /*CALCULO CON UN CPU*/
+    /*
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            result[i][j] = getAcum(i, j);
+        }
+    }
+    double end = omp_get_wtime();
+    t1 = end - start;
+    */
+
+    start = omp_get_wtime();
+
+    
+    // aplicamos la convolucion
+    
+    /*#pragma omp parallel for
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            result[i][j] = getAcum(i, j);
+        }
+    }*/
+
+    
+    omp_set_num_threads(NUM_THREADS);
+    int steps = TI / NUM_THREADS;
+    #pragma omp parallel
     {
-        for(int j=0;j<TK; j++)
-        {
-            kernel[i][j]=2;
+        int id = omp_get_thread_num();
+        int ini = steps * id;
+        for(int i = ini; i < ini + steps; i++) {
+            for(int j = 0; j < TI; j++) {
+                result[i][j] = getAcum(i, j);
+            }
         }
     }
     
-    for(int i=0; i<TI; i++)
-    {
-        for(int j=0;j<TI; j++)
-        {
-            image[i][j]=1;
-        }
-    }
+
+
+    end = omp_get_wtime();
+    tp = end - start;
+    cout<<tp<<endl;
     
-    for(int i=0; i<TI; i++)
-    {
-        for(int j=0;j<TI; j++)
-        {
-            result[i][j]=image[i][j]*getAcum(i,j);
+
+
+    /*
+    sp=t1/tp;
+    ep=tp/NUM_THREADS;
+    
+    cout<<"NUM_THREADS="<<NUM_THREADS<<endl;
+    cout<<"T(1)="<<t1<<endl;
+    cout<<"T(P)="<<tp<<endl;
+    cout<<"S(P)="<<sp<<endl;
+    cout<<"E(P)="<<ep<<endl;
+    */
+    /*
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            cout<<result[i][j]<<" ";
         }
+        cout<<endl;
     }
+    */
     return 0;
 }
