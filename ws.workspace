@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="ws" Database="" Version="10.0.0">
   <Project Name="Algoritmos" Path="Arena/Arena.project" Active="No"/>
-  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="Yes"/>
+  <Project Name="Parallel" Path="Paralell/Paralell.project" Active="No"/>
+  <Project Name="TimeTab" Path="TimeTab/TimeTab.project" Active="No"/>
+  <Project Name="ArenaTopCoder" Path="ArenaTopCoder/ArenaTopCoder.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="Algoritmos" ConfigName="Debug"/>
       <Project Name="Parallel" ConfigName="Debug"/>
+      <Project Name="TimeTab" ConfigName="Debug"/>
+      <Project Name="ArenaTopCoder" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="no">
+    <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="Algoritmos" ConfigName="Release"/>
       <Project Name="Parallel" ConfigName="Release"/>
+      <Project Name="TimeTab" ConfigName="Release"/>
+      <Project Name="ArenaTopCoder" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
