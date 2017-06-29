@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ ArenaTopCoder - Debug ]----------"
-	@cd "ArenaTopCoder" && "$(MAKE)" -f  "ArenaTopCoder.mk"
+	@echo "----------Building project:[ Algoritmo2 - Debug ]----------"
+	@cd "Algoritmo2" && "$(MAKE)" -f  "Algoritmo2.mk"
 clean:
-	@echo "----------Cleaning project:[ ArenaTopCoder - Debug ]----------"
-	@cd "ArenaTopCoder" && "$(MAKE)" -f  "ArenaTopCoder.mk" clean
+	@echo "----------Cleaning project:[ Algoritmo2 - Debug ]----------"
+	@cd "Algoritmo2" && "$(MAKE)" -f  "Algoritmo2.mk" clean

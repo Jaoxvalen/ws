@@ -4,16 +4,9 @@
   <wxString Value="/home/jaox/Documentos/ws/ws.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/jaox/Documentos/ws/Paralell/main.cpp" Name="FileName"/>
-      <int Value="89" Name="FirstVisibleLine"/>
-      <int Value="98" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/jaox/Documentos/ws/Paralell/apuntes" Name="FileName"/>
-      <int Value="60" Name="FirstVisibleLine"/>
-      <int Value="62" Name="CurrentLine"/>
+      <wxString Value="/home/jaox/Documentos/ws/ArenaTopCoder/EscapingJail.h" Name="FileName"/>
+      <int Value="12" Name="FirstVisibleLine"/>
+      <int Value="14" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

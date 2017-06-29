@@ -60,17 +60,17 @@ int main(int argc, char** argv)
     
     
     /*CALCULO CON UN CPU*/
-    /*
+    start = omp_get_wtime();
     for(int i = 0; i < TI; i++) {
         for(int j = 0; j < TI; j++) {
             result[i][j] = getAcum(i, j);
         }
     }
-    double end = omp_get_wtime();
+    end = omp_get_wtime();
     t1 = end - start;
-    */
+    
 
-    start = omp_get_wtime();
+    
 
     
     // aplicamos la convolucion
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
         }
     }*/
 
-    
+    start = omp_get_wtime();
     omp_set_num_threads(NUM_THREADS);
     int steps = TI / NUM_THREADS;
     #pragma omp parallel
@@ -100,11 +100,11 @@ int main(int argc, char** argv)
 
     end = omp_get_wtime();
     tp = end - start;
-    cout<<tp<<endl;
+
     
 
 
-    /*
+    
     sp=t1/tp;
     ep=tp/NUM_THREADS;
     
@@ -113,14 +113,16 @@ int main(int argc, char** argv)
     cout<<"T(P)="<<tp<<endl;
     cout<<"S(P)="<<sp<<endl;
     cout<<"E(P)="<<ep<<endl;
-    */
+    
+    
     /*
-    for(int i = 0; i < TI; i++) {
+     for(int i = 0; i < TI; i++) {
         for(int j = 0; j < TI; j++) {
             cout<<result[i][j]<<" ";
         }
         cout<<endl;
     }
     */
+    
     return 0;
 }
