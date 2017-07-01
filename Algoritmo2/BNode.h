@@ -3,6 +3,8 @@
 #define BNode_h
 
 #include <cstddef>
+
+
 template <class T>
 class BNode
 {

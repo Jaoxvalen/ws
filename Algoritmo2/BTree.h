@@ -22,7 +22,12 @@ private:
         return p;
     }
 public:
-    typedef BIterator <T> iterator;
+    typedef BIterator <T, Inorder> iterator_in_order;
+    typedef BIterator <T, Postorder> iterator_post_order;
+    typedef BIterator <T, Preorder> iterator_pre_order;
+    typedef BIterator <T, ReverseInOrder> iterator_reverse_in_order;
+    typedef BIterator <T, ReversePostOrder> iterator_reverse_post_order;
+    typedef BIterator <T, ReversePreOrder> iterator_reverse_pre_order;
     BNode<T> *root;
     Btree()
     {
@@ -63,19 +68,89 @@ public:
         delete t;
         return true;
     }
-    iterator begin()
+    iterator_in_order begin_in_order()
     {
-        iterator r;
+        iterator_in_order r;
         r.pila.push(new BNodeState<T>(root,0));
         r++;
         return r;
     }
-    iterator end()
+    iterator_in_order end_in_order()
     {
-        iterator r;
+        iterator_in_order r;
         r.pila.push(new BNodeState<T>(NULL,0));
         return r;
     }
+    
+    iterator_post_order begin_post_order()
+    {
+        iterator_post_order r;
+        r.pila.push(new BNodeState<T>(root,0));
+        r++;
+        return r;
+    }
+    iterator_post_order end_post_order()
+    {
+        iterator_post_order r;
+        r.pila.push(new BNodeState<T>(NULL,0));
+        return r;
+    }
+    
+    iterator_pre_order begin_pre_order()
+    {
+        iterator_pre_order r;
+        r.pila.push(new BNodeState<T>(root,0));
+        r++;
+        return r;
+    }
+    iterator_pre_order end_pre_order()
+    {
+        iterator_pre_order r;
+        r.pila.push(new BNodeState<T>(NULL,0));
+        return r;
+    }
+    
+    iterator_reverse_in_order begin_reverse_in_order()
+    {
+        iterator_reverse_in_order r;
+        r.pila.push(new BNodeState<T>(root,0));
+        r++;
+        return r;
+    }
+    iterator_reverse_in_order end_reverse_in_order()
+    {
+        iterator_reverse_in_order r;
+        r.pila.push(new BNodeState<T>(NULL,0));
+        return r;
+    }
+    iterator_reverse_post_order begin_reverse_post_order()
+    {
+        iterator_reverse_post_order r;
+        r.pila.push(new BNodeState<T>(root,0));
+        r++;
+        return r;
+    }
+    iterator_reverse_post_order end_reverse_post_order()
+    {
+        iterator_reverse_post_order r;
+        r.pila.push(new BNodeState<T>(NULL,0));
+        return r;
+    }
+    iterator_reverse_pre_order begin_reverse_pre_order()
+    {
+        iterator_reverse_pre_order r;
+        r.pila.push(new BNodeState<T>(root,0));
+        r++;
+        return r;
+    }
+    iterator_reverse_pre_order end_reverse_pre_order()
+    {
+        iterator_reverse_pre_order r;
+        r.pila.push(new BNodeState<T>(NULL,0));
+        return r;
+    }
+    
+    
 };
 
 #endif //Btree_h

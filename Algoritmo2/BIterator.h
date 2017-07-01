@@ -3,34 +3,71 @@
 
 #include <stack>
 #include "BNodeState.h"
-#include "BIteratorTypes.h"
 
 
-
-template<class T>
 class Inorder
 {
-    BIterator<T> operator ()(BIterator<T> &self)
-    {
-        return self;
-    }
+public:
+    const short LEFT=0;
+    const short ROOT=1;
+    const short RIGHT=2;
 };
 
+class Preorder
+{
+public:
+    const short LEFT=1;
+    const short ROOT=0;
+    const short RIGHT=2;
+};
 
-template <class T>
+class Postorder
+{
+public:
+    const short LEFT=0;
+    const short ROOT=2;
+    const short RIGHT=1;
+};
+
+class ReverseInOrder
+{
+public:
+    const short LEFT=2;
+    const short ROOT=1;
+    const short RIGHT=0;
+};
+
+class ReversePreOrder
+{
+public:
+    const short LEFT=2;
+    const short ROOT=0;
+    const short RIGHT=1;
+};
+
+class ReversePostOrder
+{
+public:
+    const short LEFT=1;
+    const short ROOT=2;
+    const short RIGHT=0;
+};
+
+template <class T, class O>
 class BIterator
 {
 public:
     typedef BNodeState<T> NodeState; 
     std::stack<NodeState*>pila;
     bool isFinish=false;
+    O o;
     
-    BIterator& operator=(const BIterator<T>& c) {
+    BIterator& operator=(const BIterator<T,O>& c) {
         this->pila=c.pila;
         return *this;
     }
     
-    bool operator !=(BIterator<T> x)
+    bool operator !=(BIterator<T,O> x)
     {
        return (pila.top()->nodeRef!=x.pila.top()->nodeRef)&&!isFinish;
     }
@@ -40,12 +77,12 @@ public:
         return pila.top()->nodeRef->dat;
     }
     
-    BIterator<T>& operator ++()
+    BIterator<T,O>& operator ++()
     {
         while(!isFinish)
         {
             NodeState *p=pila.top();
-            if(p->state==0)
+            if(p->state==o.LEFT)
             {
                 if(p->nodeRef->son[0])
                 {
@@ -53,23 +90,22 @@ public:
                 }
                 p->state++;    
             }
-            else if(p->state==1)
+            else if(p->state==o.ROOT)
             {
-                pila.pop();
+                p->state++;
+                return *this;
+            }
+            else if(p->state==o.RIGHT)
+            {
                 if(p->nodeRef->son[1])
                 {
                     pila.push(new NodeState(p->nodeRef->son[1],0));
                 }
                 p->state++;
-                pila.push(p);
-            }
-            else if(p->state==2)
-            {
-                p->state++;
-                return *this;
             }
             else if(p->state==3)
             {
+
                 if(pila.size()>1)
                 {
                     pila.pop();
@@ -81,9 +117,9 @@ public:
             }
         }
     }
-    BIterator<T> operator ++(int)
+    BIterator<T,O> operator ++(int)
     {
-        BIterator<T> result(*this);
+        BIterator<T,O> result(*this);
         ++(*this);
         return result;
     }

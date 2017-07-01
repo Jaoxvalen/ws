@@ -5,6 +5,8 @@
   <Project Name="TimeTab" Path="TimeTab/TimeTab.project" Active="No"/>
   <Project Name="ArenaTopCoder" Path="ArenaTopCoder/ArenaTopCoder.project" Active="No"/>
   <Project Name="Algoritmo2" Path="Algoritmo2/Algoritmo2.project" Active="Yes"/>
+  <Project Name="Matematica" Path="Matematica/Matematica.project" Active="No"/>
+  <Project Name="ParallelMaster" Path="ParallelMaster/ParallelMaster.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -13,6 +15,8 @@
       <Project Name="TimeTab" ConfigName="Debug"/>
       <Project Name="ArenaTopCoder" ConfigName="Debug"/>
       <Project Name="Algoritmo2" ConfigName="Debug"/>
+      <Project Name="Matematica" ConfigName="Debug"/>
+      <Project Name="ParallelMaster" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -21,6 +25,8 @@
       <Project Name="TimeTab" ConfigName="Release"/>
       <Project Name="ArenaTopCoder" ConfigName="Release"/>
       <Project Name="Algoritmo2" ConfigName="Release"/>
+      <Project Name="Matematica" ConfigName="Release"/>
+      <Project Name="ParallelMaster" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

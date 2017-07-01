@@ -170,3 +170,217 @@ int main(int argc, char** argv) {
         
         return r==62?-1:r;
     }
+    
+    
+    #ifndef BNodeIteratorTree_h
+#define BNodeIteratorTree_h
+
+#include <stack>
+#include "BNodeState.h"
+
+
+
+
+template <class T>
+class BIterator
+{
+public:
+    typedef BNodeState<T> NodeState; 
+    std::stack<NodeState*>pila;
+    bool isFinish=false;
+    
+    BIterator& operator=(const BIterator<T>& c) {
+        this->pila=c.pila;
+        return *this;
+    }
+    
+    bool operator !=(BIterator<T> x)
+    {
+       return (pila.top()->nodeRef!=x.pila.top()->nodeRef)&&!isFinish;
+    }
+    
+    T operator *()
+    {
+        return pila.top()->nodeRef->dat;
+    }
+    
+    BIterator<T>& operator ++()
+    {
+        while(!isFinish)
+        {
+            NodeState *p=pila.top();
+            if(p->state==0)
+            {
+                if(p->nodeRef->son[0])
+                {
+                    pila.push(new NodeState(p->nodeRef->son[0],0));
+                }
+                p->state++;    
+            }
+            else if(p->state==1)
+            {
+                pila.pop();
+                if(p->nodeRef->son[1])
+                {
+                    pila.push(new NodeState(p->nodeRef->son[1],0));
+                }
+                p->state++;
+                pila.push(p);
+            }
+            else if(p->state==2)
+            {
+                p->state++;
+                return *this;
+            }
+            else if(p->state==3)
+            {
+                if(pila.size()>1)
+                {
+                    pila.pop();
+                }
+                else
+                {
+                    isFinish=true;
+                }
+            }
+        }
+    }
+    BIterator<T> operator ++(int)
+    {
+        BIterator<T> result(*this);
+        ++(*this);
+        return result;
+    }
+};
+
+
+#endif //BIterator_h
+
+
+#pragma omp parallel // num_threads(4)
+    {
+        //int id = omp_get_thread_num();
+        //int ini = steps * id;
+        
+        #pragma omp for
+
+
+
+
+
+/*----------------------------*/
+#include <omp.h>
+
+#include <cstdlib>
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+#define TI 8000
+#define TK 5
+#define KC 2
+
+#define NUM_THREADS 8
+
+float image[TI][TI];
+float kernel[TK][TK];
+float result[TI][TI];
+
+using namespace std;
+
+// i , j relativo a la matriz image
+float getAcum(int Im_i, int Im_j)
+{
+    int di = Im_i - KC;
+    int dj = Im_j - KC;
+
+    float acum = 0;
+    // float c=0;
+    for(int ker_i = 0; ker_i < TK; ker_i++) {
+        for(int ker_j = 0; ker_j < TK; ker_j++) {
+            int im = ker_i + di;
+            int jm = ker_j + dj;
+            if(im >= 0 && im < TI && jm >= 0 && jm < TI) {
+                acum += image[im][jm] * kernel[ker_i][ker_j];
+            }
+        }
+    }
+    return acum;
+}
+
+int main(int argc, char** argv)
+{
+
+    // llenamos las matrices con aleatorios
+    for(int i = 0; i < TK; i++)
+        for(int i = 0; i < TK; i++) {
+            for(int j = 0; j < TK; j++) {
+                kernel[i][j] = 2; //(std::rand() % 5) * 2;
+            }
+        }
+
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            image[i][j] = 1; //(std::rand() % 5) * 2;
+        }
+    }
+    // fin de llenado de matrices
+
+    double t1,tp,sp,ep,end,start ;
+
+    
+    
+    /*CALCULO CON UN CPU*/
+    start = omp_get_wtime();
+    for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            result[i][j] = getAcum(i, j);
+        }
+    }
+    end = omp_get_wtime();
+    t1 = end - start;
+    
+
+    
+
+    
+    // aplicamos la convolucion
+    
+    start = omp_get_wtime();
+    omp_set_num_threads(NUM_THREADS);
+    int steps = TI / NUM_THREADS;
+    #pragma omp parallel
+    {
+        int id = omp_get_thread_num();
+        int ini = steps * id;
+        for(int i = ini; i < ini + steps; i++) {
+            for(int j = 0; j < TI; j++) {
+                result[i][j] = getAcum(i, j);
+            }
+        }
+    }
+    
+    end = omp_get_wtime();
+    tp = end - start;
+
+    sp=t1/tp;
+    ep=tp/NUM_THREADS;
+    
+    cout<<"NUM_THREADS="<<NUM_THREADS<<endl;
+    cout<<"T(1)="<<t1<<endl;
+    cout<<"T(P)="<<tp<<endl;
+    cout<<"S(P)="<<sp<<endl;
+    cout<<"E(P)="<<ep<<endl;
+    
+    
+    /*
+     for(int i = 0; i < TI; i++) {
+        for(int j = 0; j < TI; j++) {
+            cout<<result[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    */
+    
+    return 0;
+}
