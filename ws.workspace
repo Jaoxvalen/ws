@@ -4,8 +4,8 @@
   <Project Name="Parallel" Path="Paralell/Paralell.project" Active="No"/>
   <Project Name="TimeTab" Path="TimeTab/TimeTab.project" Active="No"/>
   <Project Name="ArenaTopCoder" Path="ArenaTopCoder/ArenaTopCoder.project" Active="No"/>
-  <Project Name="Algoritmo2" Path="Algoritmo2/Algoritmo2.project" Active="Yes"/>
-  <Project Name="Matematica" Path="Matematica/Matematica.project" Active="No"/>
+  <Project Name="Algoritmo2" Path="Algoritmo2/Algoritmo2.project" Active="No"/>
+  <Project Name="Matematica" Path="Matematica/Matematica.project" Active="Yes"/>
   <Project Name="ParallelMaster" Path="ParallelMaster/ParallelMaster.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">

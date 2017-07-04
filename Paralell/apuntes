@@ -384,3 +384,51 @@ int main(int argc, char** argv)
     
     return 0;
 }
+
+
+//
+
+/*
+    Mat<float> Lt, Ut, Pt;
+
+    lu(Lt, Ut, Pt, U);
+    cout<<"U:"<<endl;
+    cout<<Ut<<endl;
+    cout<<"L:"<<endl;
+    cout<<Lt<<endl;
+    cout<<"P:"<<endl;
+    cout<<Pt<<endl;
+    */
+    
+    
+    Mat<float> P(U.n_rows, U.n_cols);
+    P.eye();
+    Mat<float> L(U.n_rows, U.n_cols);
+    L.zeros();
+    
+    for(int i=0; i<U.n_cols; i++)
+    {
+        int pivot=selectPivot(U,i);
+        U.swap_rows(i,pivot);
+        L.swap_rows(i,pivot);
+        P.swap_rows(i,pivot);
+        for(int j=i+1; j<U.n_cols; j++)
+        {
+            float mk=U(j,i)/U(i,i);
+            for(int k=0; k<U.n_cols;k++)
+            {
+                U(j,k)-=mk*U(i,k);
+            }
+            L(j,i)=mk;
+        }
+    }
+    
+    Mat<float> I(U.n_rows, U.n_cols);
+    I.eye();
+    L=L+I;
+    cout<<"U:"<<endl;
+    cout<<U<<endl;
+    cout<<"L:"<<endl;
+    cout<<L<<endl;
+    cout<<"P:"<<endl;
+    cout<<P<<endl;
