@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ Matematica - Debug ]----------"
-	@cd "Matematica" && "$(MAKE)" -f  "Matematica.mk"
+	@echo "----------Building project:[ Sorting - Debug ]----------"
+	@cd "Sorting" && "$(MAKE)" -f  "Sorting.mk"
 clean:
-	@echo "----------Cleaning project:[ Matematica - Debug ]----------"
-	@cd "Matematica" && "$(MAKE)" -f  "Matematica.mk" clean
+	@echo "----------Cleaning project:[ Sorting - Debug ]----------"
+	@cd "Sorting" && "$(MAKE)" -f  "Sorting.mk" clean
