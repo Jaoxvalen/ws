@@ -5,15 +5,8 @@
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/Sorting/main.cpp" Name="FileName"/>
-      <int Value="215" Name="FirstVisibleLine"/>
-      <int Value="221" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="/home/jaox/Documentos/ws/Algoritmo2/main.cpp" Name="FileName"/>
-      <int Value="48" Name="FirstVisibleLine"/>
-      <int Value="66" Name="CurrentLine"/>
+      <int Value="240" Name="FirstVisibleLine"/>
+      <int Value="255" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

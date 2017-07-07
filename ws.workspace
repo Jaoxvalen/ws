@@ -9,7 +9,7 @@
   <Project Name="ParallelMaster" Path="ParallelMaster/ParallelMaster.project" Active="No"/>
   <Project Name="Sorting" Path="Sorting/Sorting.project" Active="Yes"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Environment/>
       <Project Name="Algoritmos" ConfigName="Debug"/>
       <Project Name="Parallel" ConfigName="Debug"/>
