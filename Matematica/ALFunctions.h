@@ -9,6 +9,47 @@ template <class T> class ALFunctions
 {
 public:
 
+
+
+    //crout 
+    void Crout(Mat<T>& A,Mat<T>& L, Mat<T>& U)
+    {
+        U.set_size(A.n_rows, A.n_cols);
+        U=U.eye();
+        L.set_size(A.n_rows, A.n_cols);
+        L.zeros();
+        L.col(0)=A.col(0);
+        
+        
+        for(int j=1; j<A.n_rows;j++)
+        {
+            U(0,j)=A(0,j)/L(0,0);
+        }
+        
+        for(int i=1; i<A.n_rows; i++)
+        {
+            for(int j=1; j<i;j++)
+            {
+                T acum=0;
+                for(int k=0; k<j-1; k++)
+                {
+                    acum+=L(i,k)*U(k,j);
+                }
+                L(i,j)=A(i,j)-acum;
+            }
+            for(int j=i+1; j<A.n_rows; j++)
+            {
+                T acum=0;
+                for(int k=0; k<i-1;k++)
+                {
+                    acum+=L(i,k)*U(k,j);
+                }
+                U(i,j)=(A(i,j)-acum)/L(i,i);
+            }
+        }
+    }
+    
+    
     //QR factorization
 
     
