@@ -8,71 +8,93 @@ using namespace arma;
 template <class T> class ALFunctions
 {
 public:
+    void crout(Mat<T>& A, Mat<T>& L, Mat<T>& U, int n)
+    {
+        int i, j, k;
+        double sum = 0;
+        
+        U.set_size(A.n_rows, A.n_cols);
+        L.set_size(A.n_rows, A.n_cols);
+        U.zeros();
+        L.zeros();
 
+        for(i = 0; i < n; i++) {
+            U(i,i) = 1;
+        }
 
+        for(j = 0; j < n; j++) {
+            for(i = j; i < n; i++) {
+                sum = 0;
+                for(k = 0; k < j; k++) {
+                    sum = sum + L(i,k) * U(k,j);
+                }
+                L(i,j) = A(i,j) - sum;
+            }
 
-    //crout 
-    void Crout(Mat<T>& A,Mat<T>& L, Mat<T>& U)
+            for(i = j; i < n; i++) {
+                sum = 0;
+                for(k = 0; k < j; k++) {
+                    sum = sum + L(j,k) * U(k,i);
+                }
+                if(L(j,j) == 0) {
+                    printf("det(L) no se puede dividir por cero");
+                    exit(EXIT_FAILURE);
+                }
+                U(j,i) = (A(j,i) - sum) / L(j,j);
+            }
+        }
+    }
+
+    // crout
+    void Crout_joao(Mat<T>& A, Mat<T>& L, Mat<T>& U)
     {
         U.set_size(A.n_rows, A.n_cols);
-        U=U.eye();
+        U = U.eye();
         L.set_size(A.n_rows, A.n_cols);
         L.zeros();
-        L.col(0)=A.col(0);
-        
-        
-        for(int j=1; j<A.n_rows;j++)
-        {
-            U(0,j)=A(0,j)/L(0,0);
+        L.col(0) = A.col(0);
+
+        for(int j = 1; j < A.n_rows; j++) {
+            U(0, j) = A(0, j) / L(0, 0);
         }
-        
-        for(int i=1; i<A.n_rows; i++)
-        {
-            for(int j=1; j<i;j++)
-            {
-                T acum=0;
-                for(int k=0; k<j-1; k++)
-                {
-                    acum+=L(i,k)*U(k,j);
+
+        for(int i = 1; i < A.n_rows; i++) {
+            for(int j = 1; j < i; j++) {
+                T acum = 0;
+                for(int k = 0; k < j - 1; k++) {
+                    acum += L(i, k) * U(k, j);
                 }
-                L(i,j)=A(i,j)-acum;
+                L(i, j) = A(i, j) - acum;
             }
-            for(int j=i+1; j<A.n_rows; j++)
-            {
-                T acum=0;
-                for(int k=0; k<i-1;k++)
-                {
-                    acum+=L(i,k)*U(k,j);
+            for(int j = i + 1; j < A.n_rows; j++) {
+                T acum = 0;
+                for(int k = 0; k < i - 1; k++) {
+                    acum += L(i, k) * U(k, j);
                 }
-                U(i,j)=(A(i,j)-acum)/L(i,i);
+                U(i, j) = (A(i, j) - acum) / L(i, i);
             }
         }
     }
-    
-    
-    //QR factorization
 
-    
+    // QR factorization
+
     void QR_Gram_Schmidt(Mat<T>& Q, Mat<T>& R, Mat<T>& A)
     {
-        R.set_size(A.n_rows,A.n_cols);
+        R.set_size(A.n_rows, A.n_cols);
         R.eye();
-        Q.set_size(A.n_rows,A.n_cols);
-        Q.col(0)=A.col(0);
-        
-        
-        for(int i=1; i<A.n_rows;i++)
-        {
-            Q.col(i)=A.col(i);
-            for(int m=0;m<i; m++)
-            {
-                R(m,i)=as_scalar((Q.col(m).t()*A.col(i))/(norm(Q.col(m))*norm(Q.col(m))));
-                Q.col(i)-=R(m,i);
+        Q.set_size(A.n_rows, A.n_cols);
+        Q.col(0) = A.col(0);
+
+        for(int i = 1; i < A.n_rows; i++) {
+            Q.col(i) = A.col(i);
+            for(int m = 0; m < i; m++) {
+                R(m, i) = as_scalar((Q.col(m).t() * A.col(i)) / (norm(Q.col(m)) * norm(Q.col(m))));
+                Q.col(i) -= R(m, i);
             }
         }
     }
-    
-    //Lu factorization
+
+    // Lu factorization
     int selectPivotF(Mat<T>& U, int col)
     {
         int max = -1;
@@ -87,17 +109,16 @@ public:
         return ir;
     }
 
-    void selectPivotTotal(Mat<T>& U, int col, int &ir, int &jr)
+    void selectPivotTotal(Mat<T>& U, int col, int& ir, int& jr)
     {
         int max = -1;
         for(int i = col; i < U.n_rows; i++) {
             for(int j = col; j < U.n_cols; j++) {
                 T p = abs(U(i, j));
-                if(p>max)
-                {
-                    max=p;
-                    ir=i;
-                    jr=j;
+                if(p > max) {
+                    max = p;
+                    ir = i;
+                    jr = j;
                 }
             }
         }
@@ -133,22 +154,21 @@ public:
         U = A;
         P.set_size(A.n_rows, A.n_cols);
         P.eye();
-        Q=P;
+        Q = P;
         L.set_size(A.n_rows, A.n_cols);
         L.zeros();
         for(int i = 0; i < U.n_cols; i++) {
-            int pi=-1, pj=-1;
+            int pi = -1, pj = -1;
             selectPivotTotal(U, i, pi, pj);
-            
+
             U.swap_rows(i, pi);
             L.swap_rows(i, pi);
             P.swap_rows(i, pi);
-            
+
             U.swap_cols(i, pj);
             L.swap_cols(i, pj);
             Q.swap_cols(i, pj);
-            
-            
+
             for(int j = i + 1; j < U.n_cols; j++) {
                 T mk = U(j, i) / U(i, i);
                 for(int k = 0; k < U.n_cols; k++) {
