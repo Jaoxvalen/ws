@@ -4,5 +4,5 @@
 class Cat
 {
 public:
-    int self[nClass][35];
+    int self[nClassMax][35];
 };
