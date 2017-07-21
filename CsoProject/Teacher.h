@@ -15,6 +15,6 @@ public:
 	int unavailableTimeslots[35]; // it is 1 if the teacher is not available at that timeslot, else it is -1
 	int classesHeTeaches[nClassMax][3];; // contains the classes, the hours and the lessons of the teacher
 	int numOfClasses; // number of classes
-	int coteachings[15][5]; // matrix used in co-teaching cases
+	int coteachings[10][5]; // matrix used in co-teaching cases //i:idcoteacher, 1: , 2:number of lessons
 	int countOfCoteachers; // number of co-teachers of the teacher
 };

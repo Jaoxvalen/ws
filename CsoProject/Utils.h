@@ -43,4 +43,9 @@ public:
             }
         }
     }
+
+    static int randint(int lower, int upper)
+    { // returns a random integer between lower and upper
+        return lower + rand() % (upper - lower + 1);
+    }
 };
