@@ -17,3 +17,9 @@ static const int nHCW = 10;
 static const int inf = 10e13; // worst (maximum) value of the fitness function
 static const int bigNumber = 2000;
 
+// Penalities Weights values
+static double HCW = 10; // Hard constraints violation
+static double ICDW = 0.95; // Ideal Classes Dispersion Weight
+static double ITDW = 0.6; // Ideal Teachers Dispersion Weight
+static double TEPW = 0.06; // Teachers’ Empty Periods Weight
+// end Penalities Weights values

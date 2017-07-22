@@ -22,6 +22,10 @@ public:
     bool isCoteaching;
     int nClass;
     int nTeachers;
+    
+    //variables del CSO
+    double globalBestFitness; // best (minimum) value of the fitness function
+    //
 
     // matrices de relacion co-teaching
     //vector<vector<int> >mCoClass;
@@ -58,6 +62,7 @@ public:
             // seteamos los valores iniciales de los teachers
             teachers.resize(nTeachers);
             for(int i = 0; i < nTeachers; i++) {
+                teachers[i].idTeacher=i;
                 teachers[i].availabilityHours = 35;
                 Utils::getWord(fichero, line); // nombre del teacher
                 teachers[i].name = line;
@@ -213,10 +218,31 @@ public:
         }
         cout << "i: Se han creado "<<nCats<<" gatos correctamente." << endl;
     }
+    
+    void CSOCore()
+    {
+        int nIter;
+        int nNumberIters=nIterations;
+        for(nIter=0; nIter<nNumberIters; nIter++)
+        {
+            
+        }
+    }
 
     void start(string dir)
     {
         inputData(dir);
         initializeCats();
+        if(isCoteaching)
+        {
+            cout << "i: Hay casos de co-teaching, se aplicara la correccion de horas implicitas..." << endl;
+            for(int i=0; i<nTeachers; i++)
+            {
+                teachers[i].fixCoTeachersImpliedHours(nTeachers,teachers);
+            }
+            cout << "i: correccion de horas implicitas completa." << endl;
+        }
+        globalBestFitness = inf;
+        CSOCore();
     }
 };

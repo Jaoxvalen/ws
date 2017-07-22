@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="/home/jaox/Documentos/ws/ws.workspace">
-  <int Value="0" Name="m_selectedTab"/>
+  <int Value="2" Name="m_selectedTab"/>
   <wxString Value="/home/jaox/Documentos/ws/ws.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/TimeTab/main.c" Name="FileName"/>
-      <int Value="1360" Name="FirstVisibleLine"/>
-      <int Value="1372" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
+      <int Value="22" Name="FirstVisibleLine"/>
+      <int Value="37" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks">
+        <wxString Value="1419:3"/>
+        <wxString Value="1487:3"/>
+      </wxArrayString>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/CsoProject/main.cpp" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="12" Name="CurrentLine"/>
+      <int Value="3" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/CsoProject/Cat.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="6" Name="CurrentLine"/>
+      <int Value="15" Name="FirstVisibleLine"/>
+      <int Value="22" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -33,15 +36,15 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/CsoProject/Context.h" Name="FileName"/>
-      <int Value="48" Name="FirstVisibleLine"/>
-      <int Value="65" Name="CurrentLine"/>
+      <int Value="35" Name="FirstVisibleLine"/>
+      <int Value="219" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="/home/jaox/Documentos/ws/CsoProject/Classe.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="3" Name="CurrentLine"/>
+      <int Value="12" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -53,16 +56,16 @@
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/jaox/Documentos/ws/CsoProject/Globals.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="17" Name="CurrentLine"/>
+      <wxString Value="/home/jaox/Documentos/ws/CsoProject/Utils.h" Name="FileName"/>
+      <int Value="24" Name="FirstVisibleLine"/>
+      <int Value="46" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="/home/jaox/Documentos/ws/CsoProject/Utils.h" Name="FileName"/>
+      <wxString Value="/home/jaox/Documentos/ws/CsoProject/Globals.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="4" Name="CurrentLine"/>
+      <int Value="1" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

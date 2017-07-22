@@ -24,7 +24,7 @@
       <Project Name="ParallelSort" ConfigName="Debug"/>
       <Project Name="CsoProject" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="yes">
+    <WorkspaceConfiguration Name="Release" Selected="no">
       <Environment/>
       <Project Name="Algoritmos" ConfigName="Release"/>
       <Project Name="Parallel" ConfigName="Release"/>
