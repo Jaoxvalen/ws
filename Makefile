@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ CsoProject - Debug ]----------"
-	@cd "CsoProject" && "$(MAKE)" -f  "CsoProject.mk"
+	@echo "----------Building project:[ GraphPath - Debug ]----------"
+	@cd "GraphPath" && "$(MAKE)" -f  "GraphPath.mk"
 clean:
-	@echo "----------Cleaning project:[ CsoProject - Debug ]----------"
-	@cd "CsoProject" && "$(MAKE)" -f  "CsoProject.mk" clean
+	@echo "----------Cleaning project:[ GraphPath - Debug ]----------"
+	@cd "GraphPath" && "$(MAKE)" -f  "GraphPath.mk" clean

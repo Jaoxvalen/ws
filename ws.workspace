@@ -9,7 +9,8 @@
   <Project Name="ParallelMaster" Path="ParallelMaster/ParallelMaster.project" Active="No"/>
   <Project Name="Sorting" Path="Sorting/Sorting.project" Active="No"/>
   <Project Name="ParallelSort" Path="ParallelSort/ParallelSort.project" Active="No"/>
-  <Project Name="CsoProject" Path="CsoProject/CsoProject.project" Active="Yes"/>
+  <Project Name="CsoProject" Path="CsoProject/CsoProject.project" Active="No"/>
+  <Project Name="GraphPath" Path="GraphPath/GraphPath.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -23,6 +24,7 @@
       <Project Name="Sorting" ConfigName="Debug"/>
       <Project Name="ParallelSort" ConfigName="Debug"/>
       <Project Name="CsoProject" ConfigName="Debug"/>
+      <Project Name="GraphPath" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="no">
       <Environment/>
@@ -36,6 +38,7 @@
       <Project Name="Sorting" ConfigName="Release"/>
       <Project Name="ParallelSort" ConfigName="Release"/>
       <Project Name="CsoProject" ConfigName="Release"/>
+      <Project Name="GraphPath" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

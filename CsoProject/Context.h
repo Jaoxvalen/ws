@@ -34,6 +34,22 @@ public:
     int mCoClass[nClassMax][nTeachersMax];   // contains the class with which there is co-teaching
     int mCoTeacher[nTeachersMax][nClassMax]; // contains the teacher that participates in a co-teaching
 
+    void writeFileSolution(Cat s, string dir)
+    {
+        dir="/home/jaox/Documentos/data/s.txt";
+        ofstream outfile (dir);
+        
+        for(int i=0; i<s.self.size();i++)
+        {
+            for(int j=0; j<s.self[0].size(); j++)
+            {
+                outfile<<s.self[i][j]<<'\t';
+            }
+            outfile<<endl;
+        }
+        outfile.close();
+    }
+
     void inputData(string dir)
     {
         cout << "i: Leyendo datos del archivo..." << endl;
@@ -221,16 +237,35 @@ public:
     
     void CSOCore()
     {
+        cout << "i: Ejecutando el CSO, con "<< nIterations<<" iteraciones, espere..." << endl;
         int nIter;
         int nNumberIters=nIterations;
         for(nIter=0; nIter<nNumberIters; nIter++)
         {
-            
+            //cout <<'\r';
+            cout << "i: Iteracion N°: "<<nIter<<endl;
+            for(int nc=0; nc<nCats; nc++)
+            {
+                double fitness=cats[nc].calculateFitness(isCoteaching,classes,teachers,mCoClass,mCoTeacher,0,35);
+                if(fitness<=globalBestFitness)
+                {
+                    globalBestFitness=fitness;
+                    oGlobalBest=cats[nc];
+                }
+                
+                int rSeekProb = rand() % 100;//un numero entre 0 y 99
+                bool bSeek=rSeekProb>nMR;
+                cats[nc].move(bSeek,isCoteaching,oGlobalBest,classes,teachers,mCoClass,mCoTeacher);
+            }
         }
+        writeFileSolution(oGlobalBest,"");
+        cout<<endl;
+        cout<<"Fitness solution: "<<oGlobalBest.calculateFitness(isCoteaching,classes,teachers,mCoClass,mCoTeacher,0,35)<<endl;
     }
 
     void start(string dir)
     {
+        Utils::initialize_randomness(-1);//seed toma el time de system
         inputData(dir);
         initializeCats();
         if(isCoteaching)
