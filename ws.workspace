@@ -8,9 +8,9 @@
   <Project Name="Matematica" Path="Matematica/Matematica.project" Active="No"/>
   <Project Name="ParallelMaster" Path="ParallelMaster/ParallelMaster.project" Active="No"/>
   <Project Name="Sorting" Path="Sorting/Sorting.project" Active="No"/>
-  <Project Name="ParallelSort" Path="ParallelSort/ParallelSort.project" Active="No"/>
+  <Project Name="ParallelSort" Path="ParallelSort/ParallelSort.project" Active="Yes"/>
   <Project Name="CsoProject" Path="CsoProject/CsoProject.project" Active="No"/>
-  <Project Name="GraphPath" Path="GraphPath/GraphPath.project" Active="Yes"/>
+  <Project Name="GraphPath" Path="GraphPath/GraphPath.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
